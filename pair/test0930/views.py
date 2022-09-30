@@ -4,7 +4,13 @@ from .models import Review
 # Create your views here.
 def index(request):
     review = Review.objects.all()
-    context = {"review": review}
+    posts = Review.objects.order_by("id")
+
+    context = {
+        "review": review,
+        "posts": posts,
+    }
+
     # return render(request, "test0930/index.html")
     return render(request, "test0930/index.html", context)
 
@@ -23,4 +29,45 @@ def create(request):
         "content": content,
     }
 
-    return redirect("test0930:index")
+    return redirect('test0930:index')
+
+def new(request):
+
+    return render(request,'test0930/new.html')
+
+def detail(request,id):
+
+    post = Review.objects.get(id=id)
+    context = {"post":post }
+
+
+    return render(request,'test0930/detail.html',context)
+
+def delete(request,id):
+
+    post = Review.objects.get(id=id)
+    post.delete()
+
+    return redirect('test0930:index')
+
+def edit(request,id):
+
+    post = Review.objects.get(id=id)
+    context={
+        'post':post
+    }
+
+    return render(request, 'test0930/edit.html', context)
+
+def update(request,id):
+
+    post = Review.objects.get(id=id)
+
+    title_ = request.GET.get("title")
+    content_ = request.GET.get("content")
+    post.title = title_
+    post.content = content_
+    post.save()
+
+
+    return redirect('test0930:detail', post.id)
