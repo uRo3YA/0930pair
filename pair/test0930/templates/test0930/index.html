@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Movie Review</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,23 +25,27 @@
         <table class="table mt-3">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">리뷰 번호</th>
-                    <th scope="col">리뷰 제목</th>
-                    <th scope="col">작성 시간</th>
+                    <th scope="col" class="text text-center ">리뷰 번호</th>
+                    <th scope="col" class="text text-center ">리뷰 제목</th>
+                    <th scope="col" class="text text-end">작성 시간</th>
+                    <th scope="col" class="text text-end">최근 수정 시간</th>
                 </tr>
             </thead>
             <tbody>
                 {% for post in posts %}
                 <tr>
-                    <td>
+                    <td class="text text-center ">
                         {{ post.id }}
                     </td>
-                    <td>
-                        <a href="{% url 'test0930:detail' post.id   %} "> {{ post.title}} </a>
+                    <td class="text text-center ">
+                        <a class="text-decoration-none" href="{% url 'test0930:detail' post.id   %} "> {{ post.title}}
+                        </a>
                     </td>
-                    <td>
-                        {{ post.created_at|date:'Y년 m월 d일'}}
-
+                    <td class="text text-end">
+                        {{ post.created_at|date:'Y년 m월 d일' }}
+                    </td>
+                    <td class="text text-end">
+                        {{ post.updated_at|date:'Y년 m월 d일' }}
                     </td>
                 </tr>
                 {% endfor %}

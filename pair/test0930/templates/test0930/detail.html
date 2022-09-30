@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title></title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,13 +14,43 @@
 </head>
 
 <body>
-  <div class="container mt-3">
-    <h1> 제목 : {{post.title}}</h1>
-    <p class="mt-5"> {{post.content }} </p>
+  <div class="container shadow-lg p-5 mt-5 mb-5 bg-body rounded-5" style="min-width: 770px">
+    <!-- <div class="text-center">
+      <h1>Movie Review</h1>
+    </div> -->
 
-    <a href="{% url 'test0930:edit' post.id   %}">리뷰 수정</a>
-    <a href="{% url 'test0930:delete' post.id   %}">리뷰 삭제</a>
-    <a href="{% url 'test0930:index' %}">글 목록</a>
+    <div class="container mt-3">
+
+      <div class="row">
+        <h2> {{post.title}}</h2>
+      </div>
+      <div class="row text-end">
+        <h6> 최근 수정: {{ post.updated_at|date:'Y년 m월 d일' }} </h6>
+      </div>
+
+      <div class="jumbotron">
+        <p class="mt-5 border border-3 p-3"> {{post.content | linebreaksbr }} </p>
+      </div>
+
+
+      <div class="d-flex justify-content-end ">
+        <div class="m-1">
+          <a a class="text-decoration-none" href="{% url 'test0930:index' %}">
+            <input class="btn btn-info" type="submit" value="글 목록">
+          </a>
+        </div>
+        <div class="m-1">
+          <a class="text-decoration-none " href="{% url 'test0930:edit' post.id   %}">
+            <input class="btn btn-primary" type="submit" value="리뷰 수정">
+          </a>
+        </div>
+        <div class="m-1">
+          <a a class="text-decoration-none" href="{% url 'test0930:delete' post.id   %}">
+            <input class="btn btn-danger" type="submit" value="리뷰 삭제">
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
 
